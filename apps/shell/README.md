@@ -1,32 +1,45 @@
-# React + TypeScript + Vite
+# Enterprise Frontend Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A production-style React and TypeScript frontend platform demonstrating
+enterprise frontend architecture, modular application design, automated
+testing and modern engineering practices.
 
-Currently, two official plugins are available:
+## Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This repository is designed to explore engineering patterns used in
+large-scale frontend applications.
 
-## React Compiler
+## Technology
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- TypeScript
+- Vite
+- pnpm Workspaces
+- Oxlint
+- Prettier
 
-## Expanding the Oxlint configuration
+Planned:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+- Micro-frontends
+- Design System
+- Storybook
+- Playwright
+- CI/CD
+- Accessibility testing
+- Performance optimisation
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## Repository Structure
+
+```text
+apps/
+  shell/
+
+packages/
+  api-client/
+  design-system/
+  shared-types/
+
+docs/
+  adr/
+  architecture/
 ```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
