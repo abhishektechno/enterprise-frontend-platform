@@ -15,7 +15,8 @@
     "@enterprise/design-system": "workspace:*",
     "@enterprise/shared-types": "workspace:*",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router": "^8.3.1"
   },
   "devDependencies": {
     "@types/node": "^24.13.3",
