@@ -1,15 +1,20 @@
 import { Outlet } from 'react-router';
 
+import { Header } from '../components/navigation/Header';
+import { Sidebar } from '../components/navigation/Sidebar';
+
 export function AppLayout() {
   return (
     <div>
-      <header>
-        <strong>Enterprise Operations Platform</strong>
-      </header>
+      <Header />
 
-      <main>
-        <Outlet />
-      </main>
+      <div>
+        <Sidebar />
+
+        <main>
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 }

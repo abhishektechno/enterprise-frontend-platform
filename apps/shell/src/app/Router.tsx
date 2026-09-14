@@ -1,9 +1,13 @@
-import { createBrowserRouter } from 'react-router';
-
+import { createBrowserRouter, redirect } from 'react-router';
 import { AppLayout } from '../layouts/AppLayout';
 import { AuthLayout } from '../layouts/AuthLayout';
 
-import { AdministrationPage } from '../pages/AdministrationPage';
+import { AdminLayout } from '../layouts/AdminLayout';
+
+import { RolesPage } from '../pages/admin/RolesPage';
+import { SettingsPage } from '../pages/admin/SettingsPage';
+import { UsersPage } from '../pages/admin/UsersPage';
+
 import { CatalogPage } from '../pages/CatalogPage';
 import { DashboardPage } from '../pages/DashboardPage';
 import { LoginPage } from '../pages/LoginPage';
@@ -40,8 +44,27 @@ export const router = createBrowserRouter([
         Component: OrdersPage,
       },
       {
-        path: 'administration',
-        Component: AdministrationPage,
+        path: 'admin',
+        Component: AdminLayout,
+
+        children: [
+          {
+            index: true,
+            loader: () => redirect('/admin/users'),
+          },
+          {
+            path: 'users',
+            Component: UsersPage,
+          },
+          {
+            path: 'roles',
+            Component: RolesPage,
+          },
+          {
+            path: 'settings',
+            Component: SettingsPage,
+          },
+        ],
       },
       {
         path: '*',
