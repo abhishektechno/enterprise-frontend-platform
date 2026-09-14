@@ -1,5 +1,5 @@
-export type { Product, ProductStatus } from './Products/Product';
+export type { Product, ProductStatus } from './Product';
 
-export type { Order, OrderStatus } from './Orders/Order';
+export type { Order, OrderStatus } from './Order';
 
-export type { User, UserRole } from './Users/User';
+export type { User, UserRole } from './User';
