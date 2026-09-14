@@ -7,9 +7,13 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
+    "typecheck": "tsc --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@enterprise/api-client": "workspace:*",
+    "@enterprise/design-system": "workspace:*",
+    "@enterprise/shared-types": "workspace:*",
     "react": "^19.2.8",
     "react-dom": "^19.2.8"
   },
