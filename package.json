@@ -2,6 +2,7 @@
   "name": "enterprise-frontend-platform",
   "version": "1.0.0",
   "description": "Production-style enterprise frontend architecture built with React and TypeScript",
+  "private": true,
   "license": "ISC",
   "author": "Abhishek Dubey",
   "type": "commonjs",
@@ -9,8 +10,16 @@
   "scripts": {
     "dev": "pnpm --filter shell dev",
     "build": "pnpm -r build",
-    "test": "pnpm -r test",
-    "lint": "pnpm -r lint"
+    "typecheck": "pnpm -r typecheck",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm typecheck && pnpm lint && pnpm format:check"
+  },
+  "devDependencies": {
+    "oxlint": "^1.79.0",
+    "prettier": "^3.9.6"
   },
   "engines": {
     "node": ">=20"
