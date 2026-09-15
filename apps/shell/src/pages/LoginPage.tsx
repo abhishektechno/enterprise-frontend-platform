@@ -1,12 +1,14 @@
 import { useLocation, useNavigate } from 'react-router';
 
 import { useAuth } from '../auth/useAuth';
+import { Role } from '@enterprise/shared-types';
+import { useState } from 'react';
 
 export function LoginPage() {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
+  const [role, setRole] = useState<Role>('viewer');
   interface LoginLocationState {
     from?: {
       pathname?: string;
@@ -19,7 +21,7 @@ export function LoginPage() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    signIn();
+    signIn(role);
     navigate(destination, { replace: true });
   }
 
@@ -31,9 +33,16 @@ export function LoginPage() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email</label>
+          <p>Demo only: select a role to test authorization behaviour.</p>
+          <label htmlFor="role">Demo role</label>
 
-          <input id="email" name="email" type="email" autoComplete="email" />
+          <select id="role" value={role} onChange={(event) => setRole(event.target.value as Role)}>
+            <option value="viewer">Viewer</option>
+
+            <option value="manager">Manager</option>
+
+            <option value="admin">Administrator</option>
+          </select>
         </div>
 
         <div>

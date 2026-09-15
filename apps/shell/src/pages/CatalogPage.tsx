@@ -1,9 +1,10 @@
-export function CatalogPage() {
-  return (
-    <section>
-      <h1>Catalog</h1>
+import { usePermissions } from '../auth/usePermissions';
+import { ForbiddenPage } from './ForbiddenPage';
 
-      <p>Manage products and catalog information.</p>
-    </section>
-  );
+export function CatalogPage() {
+  const { hasPermission } = usePermissions();
+
+  if (!hasPermission('catalog:view')) {
+    return <ForbiddenPage />;
+  }
 }

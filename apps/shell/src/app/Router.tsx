@@ -14,6 +14,8 @@ import { LoginPage } from '../pages/LoginPage';
 import { NotFoundPage } from '../pages/NotFoundPage';
 import { OrdersPage } from '../pages/OrdersPage';
 import { RequireAuth } from '../auth/RequireAuth';
+import { ForbiddenPage } from '../pages/ForbiddenPage';
+import { RequirePermission } from '../auth/RequirePermission';
 
 export const router = createBrowserRouter([
   {
@@ -40,33 +42,55 @@ export const router = createBrowserRouter([
             Component: DashboardPage,
           },
           {
-            path: 'catalog',
-            Component: CatalogPage,
-          },
-          {
-            path: 'orders',
-            Component: OrdersPage,
-          },
-          {
-            path: 'admin',
-            Component: AdminLayout,
+            element: <RequirePermission permission="catalog:view" />,
 
             children: [
               {
-                index: true,
-                loader: () => redirect('/admin/users'),
+                path: 'catalog',
+                Component: CatalogPage,
               },
+            ],
+          },
+          {
+            element: <RequirePermission permission="orders:view" />,
+
+            children: [
               {
-                path: 'users',
-                Component: UsersPage,
+                path: 'orders',
+                Component: OrdersPage,
               },
+            ],
+          },
+          {
+            path: 'forbidden',
+            Component: ForbiddenPage,
+          },
+          {
+            element: <RequirePermission permission="admin:view" />,
+
+            children: [
               {
-                path: 'roles',
-                Component: RolesPage,
-              },
-              {
-                path: 'settings',
-                Component: SettingsPage,
+                path: 'admin',
+                Component: AdminLayout,
+
+                children: [
+                  {
+                    index: true,
+                    loader: () => redirect('/admin/users'),
+                  },
+                  {
+                    path: 'users',
+                    Component: UsersPage,
+                  },
+                  {
+                    path: 'roles',
+                    Component: RolesPage,
+                  },
+                  {
+                    path: 'settings',
+                    Component: SettingsPage,
+                  },
+                ],
               },
             ],
           },
