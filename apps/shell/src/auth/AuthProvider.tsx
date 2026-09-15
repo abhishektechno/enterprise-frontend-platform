@@ -4,6 +4,7 @@ import { AuthContext } from './AuthContext';
 
 import type { AuthState } from './auth.types';
 import type { PropsWithChildren } from 'react';
+import { Role } from '@enterprise/shared-types';
 
 const initialState: AuthState = {
   status: 'unauthenticated',
@@ -13,7 +14,7 @@ const initialState: AuthState = {
 export function AuthProvider({ children }: PropsWithChildren) {
   const [authState, setAuthState] = useState<AuthState>(initialState);
 
-  function signIn() {
+  function signIn(role: Role) {
     setAuthState({
       status: 'authenticated',
 
@@ -21,6 +22,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
         id: 'user-1',
         name: 'Abhishek',
         email: 'abhishek@example.com',
+        role,
       },
     });
   }
